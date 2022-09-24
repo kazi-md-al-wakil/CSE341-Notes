@@ -1,0 +1,67 @@
+Contents of Lab Sheet:6
+-----------------------
+Array:
+
+Syntax: "array_name" data_type values
+Example 1:
+.data
+	myarr db 10,45,49
+	myarr1 dw "hi this is me"
+.code
+
+data_type can be either db or dw 
+
+db = data byte
+dw = data word
+
+Java Code: int[] a = new int[5];
+Assembly:
+a		db		5		dup(?)
+variable    data_type 	      size           duplication
+dup(?) stands for filling the array with blank
+dup(3) stands for filling the array with 3
+dup(0) stands for filling the array with 0
+
+Template with a example:
+;--------------
+Question: take 5 inputs from user, store it in a array. 
+print the numbers in reverse order.
+
+Ans:
+;---------
+.model small
+.stack 100h
+.data
+    a db 5 dup(0)
+.code
+main proc
+    mov ax,@data
+    mov ds, ax
+    
+    mov cx,5
+    mov si,0
+    mloop:
+        mov ah,1
+        int 21h
+        mov a[si], al
+        add si, 1
+        loop mloop
+
+    mov ah, 2
+    mov cx, 5
+    mov si,4
+    print:
+        mov dl, a[si]
+        int 21h
+        sub si, 1
+        loop print
+
+    EXIT: 
+        mov ax,4C00h  
+        int 21h
+        main endp
+    
+end main
+;-------------
+
+-------------------------------------------------

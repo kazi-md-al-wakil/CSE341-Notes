@@ -1,0 +1,57 @@
+Contents of Lab Sheet:3
+-----------------------
+AH = 1; single character input
+AH = 2; single character output
+AH = 9; string output
+
+SINGLE CHARACTER INPUT:
+	mov ah,1
+	int 21h
+	; Jei input ta nilam, oi input ta AL e store hobe.	
+SINGLE CHARACTER OUTPUT:
+	; The item to be printed must be in DL
+	mov dl,5 
+	mov ah,2 
+	int 21h
+
+STRING OUTPUT:
+	.DATA
+    		str DB "This is my first message using assembly!$"
+	.CODE
+	; The string to be printed must be in DX
+
+	LEA  DX, str
+	mov ah,9
+	int 21h
+
+-> How to go to the next line:
+Copy paste below code:
+
+
+  MOV AH, 2
+  MOV DL, 0DH
+  INT 21h
+  MOV DL, 0AH
+  INT 21H 
+
+Example:
+
+    ;printing a string  
+    LEA  DX, str
+    mov ah,9
+    int 21h  
+
+     
+    ;Going to the next line 
+    MOV AH, 2
+    MOV DL, 0DH
+    INT 21h
+    MOV DL, 0AH
+    INT 21H    
+ 
+    ;printing a string 
+    LEA  DX, str1
+    mov ah,9
+    int 21h     
+
+--------------------------------------------------

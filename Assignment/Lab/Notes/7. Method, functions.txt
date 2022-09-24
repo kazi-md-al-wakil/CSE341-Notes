@@ -1,0 +1,93 @@
+Contents of Lab Sheet:8
+-----------------------
+Method with Macro operation:
+
+Question: Show the value of n^m. Example: 2^5 = 32
+
+Ans:
+;_______________________
+.model small
+    power macro a1,a2
+        mov cx, 00h 
+        mov cl, a2
+        mov al, 01H
+
+        m1loop:
+            mul a1
+            loop m1loop
+        mov dx, ax
+    power endm        
+        
+.stack 100h
+.data
+.code 
+main proc
+    mov ax,@data
+    mov ds, ax
+    ;--------
+    mov ah,1
+    
+    ;n^m
+    int 21h
+    mov bl, al
+    sub bl,30h ; bl=n
+    
+    int 21h
+    mov bh,al ;bh=m
+    sub bh,30h 
+    
+    power bl, bh 
+    
+    add dx, 30h
+     
+    mov ah, 2
+    int 21h
+    ;--------
+    EXIT: 
+        mov ax,4C00h  
+        int 21h
+        main endp
+    
+
+end main
+
+;_______________________
+Question: Define a macro to move a word variable B into another
+word variable A.
+Ans:
+;---------
+.model small
+    moveVariable macro var1, var2 ;arguments must be memory words or 16 bit registers
+    ; var1 = A = 2 , var2 = B = 5
+    push var2 ;pushed 5 
+    pop var1  ; poped 5 and stored it in var1=A
+moveVariable endm 
+
+.stack 100h
+.data
+    A dw 2
+    B dw 5
+.code
+main proc
+    mov ax,@data
+    mov ds, ax
+    ;--------
+
+    moveVariable A, B 
+
+    mov dx, A
+    add dx, 30H 
+    mov ah, 2 
+    int 21h 
+    
+    ;--------
+    EXIT:
+        mov ax,4C00h  
+        int 21h
+        main endp
+   
+
+end main
+;_______________________
+
+-------------------------------------------------

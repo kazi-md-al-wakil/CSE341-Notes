@@ -1,0 +1,68 @@
+;Question: take n lower case letter, store in a array 
+; convert the lowercase letters to uppercase and print array
+
+
+.model small
+    ;if working with methods
+    
+    ;methodName macro a1,a2
+          ;write codes here
+    ;methodName endm           
+.stack 100h 
+
+.data 
+    ;if working with array
+    num1 db ?
+    a DB num1 dup(0)
+    
+    ;if there is string output 
+    ;c DB " Not Palindrome$"  
+     
+    ;when to take num1 as a variable
+    ;num1 dw ?
+.code 
+
+
+main proc
+    mov ax,@data
+    mov ds, ax
+    ;--------    
+    ;write your code here
+    ;taking input 
+    mov ah,1
+    int 21h
+    mov num1, al
+    
+    sub num1,30h
+    
+    mov ch, 00h
+    mov cl,num1
+    mov si,0
+    mloop:
+        mov ah,1
+        int 21h
+        mov a[si], al
+        add si, 1
+        loop mloop
+    
+    mov ch, 00h
+    mov cl,num1
+    mov si,0
+    mloop1:
+        sub a[si], 32
+        mov dx, 00h
+        mov dl, a[si]
+        add si, 1
+        mov ah,2
+        int 21h
+        loop mloop1
+    
+
+    ;--------
+    EXIT: 
+        mov ax,4C00h  
+        int 21h
+        main endp
+    
+
+end main

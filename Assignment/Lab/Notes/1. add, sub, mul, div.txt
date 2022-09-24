@@ -1,0 +1,60 @@
+Contents of Lab Sheet:2 
+-----------------------
+
+AX, BX, CX, DX (16 bit reg.)
+AH, AL, BH, BL, CH, CL, DH, DL (8 bit reg)
+
+* MOV Destination, Source 
+* ADD AX, BX ; AX = AX + BX 
+* SUB CX, DX ; CX = CX - DX
+* INC AX ; AX = AX+1
+* DEC AX ; AX = AX-1
+
+MULTIPLICATION:
+	-> Byte Multiplication: Multiplication of Two 8 bit numbers
+	-> Word Multiplication: Multiplication of Two 16 bit numbers
+	Byte Multiplication:
+	Example:
+		MOV BH, 04H ; BH = 04 (J kono 8 bit reg e store kora jabe)
+    		MOV AL, 02H ; AL = 02 (AL must have a value)
+    		MUL BH ; AX = BH * AL (BH er sathe AL gun hoye AX e store hobe)
+	Word Multiplication:
+	Example:
+		MOV BX, 1018H ; BH = 1018 (J kono 16 bit reg e store kora jabe)
+    		MOV AX, 2003H ; AL = 2003 (AX must have a value)
+    		MUL BX ; (BX er sathe AX multiply hoye 
+					;DX e HIGHER 16 Bit store hobe)
+					;AX e LOWER 16 Bit store hobe)
+
+		;1018 × 2003 = 0203 3048 (32 bit number)
+
+		;Higher 16 bit = 0203 (Will store in DX -> DX = 02 03)
+		;Lower 16 bit = 3048 (Will store in AX -> AX = 30 48)
+
+DIVISION: 
+	When division is performed there are 2 results- 
+		*quotient and remainder.
+
+	-> BYTE Division: (16 bit number/ 8 bit number)
+	Example: 
+		MOV AX, 0DH; AX = 000DH (D = 13 in Decimal) 
+					;(16 bit Reg. AX must have a value)
+		MOV BL, 05H ; Divisor -> BL = 05H(J kono 8 bit reg. e store korlam)
+
+		DIV BL ; AX/BL will happen
+		; 13/5 => Quotient: 2H, Remainder: 3H
+			  AL: 02       AH: 03
+
+	-> WORD Division: (32 bit number/ 16 bit number)
+	Example: 
+    		MOV DX, 01234H  ; Upper half of 32 bit number (DX Reg fixed)
+    		MOV AX, 0AACDH  ; Lower half of 32 bit number (AX Reg fixed)
+    				; Whole Dividend: DXAX -> 1234 AACD
+
+    		MOV BX, 0AAAAH ; Divisor BX = AAAAH(J kono 16 bit reg. e store korlam)
+    		
+		DIV BX   ; 1234AACD / AAAA => Quotient: 1B4FH, Remainder: 1257H			  
+			  		      AX: 1B4FH        DX: 1257H
+				
+
+--------------------------------------------------

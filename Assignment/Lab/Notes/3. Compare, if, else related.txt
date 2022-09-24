@@ -1,0 +1,39 @@
+Contents of Lab Sheet:4
+-----------------------
+
+Condition  Jump Instruction  Explanation
+--------- |----------------|--------------
+AX == BX           JE        jump if destination and source are equal
+AX > BX   	   JG	     jump if destination > source
+AX < BX		   JL 	     jump if destination < source
+AX >= BX	   JGE 	     jump if destination >= source
+AX <= BX  	   JLE       jump if destination <= source
+AX != BX  	   JNE       jump if destination != source
+
+Example:
+    MOV bh, 02h
+    MOV bl, 03h
+    
+    cmp bh, bl 
+    JG Text ;(if bh>bl then go to Text)
+    JL Text1 ;(if bh<bl then go to Text1)
+    
+    
+    Text:
+    	LEA  DX, str
+	mov ah,9
+	int 21h  
+	jmp final 
+	
+    Text1:
+    	LEA  DX, str1
+	mov ah,9
+	int 21h  
+	jmp final
+	
+	   
+    FINAL:
+    	MOV AH,4CH
+    	INT 21H
+    	MAIN ENDP
+-------------------------------------------------

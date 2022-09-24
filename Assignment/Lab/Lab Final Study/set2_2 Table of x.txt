@@ -1,0 +1,67 @@
+; Question: print the times table of x upto y
+; x =2, y=3
+; 2 x 1= 2
+; 2 x 2= 4
+; 2 x 3= 6
+
+.model small
+    ;if working with methods
+    
+    ;methodName macro a1,a2
+          ;write codes here
+    ;methodName endm           
+.stack 100h 
+
+.data 
+    ;if working with array
+    ;a DB 5 dup(0) 
+    
+    ;if there is string output 
+    ;c DB " Not Palindrome$"  
+     
+    ;when to take num1 as a variable
+    ;num1 dw ?
+    num1 db ?
+.code 
+
+
+main proc
+    mov ax,@data
+    mov ds, ax
+    ;--------    
+    ;write your code here
+    mov ah, 1
+    int 21h
+    sub al, 30h
+    mov bl, al
+    
+    mov ah, 1
+    int 21h
+    sub al, 30h
+    mov bh, al
+    
+    mov ax, 00h
+    mov num1, 01h
+     
+    loop1: 
+        mov al, bl
+        mul num1
+        add num1, 01h 
+        mov dx, ax
+        add dx, 0030h
+        mov ah, 2
+        int 21h
+        mov ah, 00h
+        
+        cmp num1, bh
+        JG exit
+        loop loop1
+
+    ;--------
+    EXIT: 
+        mov ax,4C00h  
+        int 21h
+        main endp
+    
+
+end main

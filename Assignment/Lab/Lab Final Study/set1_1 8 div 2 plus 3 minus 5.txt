@@ -1,0 +1,62 @@
+;question: 8/2+3-5*2+5
+
+.model small
+    ;if working with methods
+    
+    ;methodName macro a1,a2
+          ;write codes here
+    ;methodName endm           
+.stack 100h 
+
+.data 
+    ;if working with array
+    ;a DB 5 dup(0)
+    ;c DB " Not Palindrome$"
+    ;num1 dw ?
+.code 
+
+
+main proc
+    mov ax,@data
+    mov ds, ax
+    ;--------    
+    ;write your code here
+    mov ax, 00H
+    mov al, 02h
+    mov bh, 05h
+    mul bh
+    mov ah, 03h 
+    ;al = 0AH
+    ;ah = 03H
+    mov dh, 05h
+    add dh, ah
+    ;dh = 08h
+    mov dl, al
+    ;dl = 0Ah
+    
+    mov ax, 00h
+    mov ax, 08h
+    mov bl, 02h
+    div bl
+    ;al=04h
+    add al, dh
+    ;al = 0Ch
+    sub al, dl;
+    ; al = 02h
+    
+    mov dx, 00h
+    mov dl, al;
+    add dl, 30h
+    mov ah, 2
+    int 21h
+    ;prints 02h
+    
+
+    ;--------
+    EXIT: 
+        mov ax,4C00h  
+        int 21h
+        main endp
+    
+
+end main

@@ -1,0 +1,5 @@
+Lab: 6
+Take 6 inputs from user and see if its a palindrome
+
+Lab: 7
+Show the value of n^m. Example: 2^5 = 32

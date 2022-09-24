@@ -1,0 +1,14 @@
+Contents of Lab Sheet:5
+-----------------------
+LOOP:
+	mov cx, 05H ; the number of times the loop will run
+		    ; CX hocche loop counter. CX auto komte thakbe. 
+		    ; amader kichu kora lagbe na	
+	mov dl,30h 
+	mov ah,2 
+	start:
+	 int 21h 
+	 inc dl
+	 loop start
+
+-------------------------------------------------

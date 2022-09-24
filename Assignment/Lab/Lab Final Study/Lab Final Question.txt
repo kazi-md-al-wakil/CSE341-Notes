@@ -1,0 +1,5 @@
+Question: 
+1. Take 3 inputs, if there is any odd number, print ta first occurance. if no odd number
+found then print "not found"
+
+2. Take a 5 length array. find out the highest number using method.

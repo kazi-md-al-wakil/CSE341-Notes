@@ -1,0 +1,8 @@
+task: 1
+Given 
+1 4 7 10 13 16 19
+Print the sum. [can't use array]
+
+task: 2
+take 5 inputs from user, store it in a array. 
+print the numbers in reverse order.

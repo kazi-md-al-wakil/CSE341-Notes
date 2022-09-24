@@ -1,0 +1,71 @@
+; Question: input from user to fill and array of length 6.
+; after that print all the numbers from that are divisible by 3.
+.model small
+    ;if working with methods
+    
+    ;methodName macro a1,a2
+          ;write codes here
+    ;methodName endm           
+.stack 100h 
+
+.data 
+    ;if working with array
+    ;a DB 5 dup(0)   
+    a DB 6 dup(0) 
+    
+    ;if there is string output 
+    ;c DB " Not Palindrome$"  
+     
+    ;when to take num1 as a variable
+    ;num1 dw ?
+.code 
+
+
+main proc
+    mov ax,@data
+    mov ds, ax
+    ;--------    
+    ;write your code here
+
+    mov cx,06h
+    mov si,0h
+    mloop:
+        mov ah,1
+        int 21h
+        sub al, 30h
+        mov a[si], al
+        add si, 1
+        loop mloop
+       
+    mov bl, 03h
+    mov cx, 06h
+    mov si, 0h    
+    loop1: 
+        mov ax, 0000h
+        mov al, a[si]
+        div bl
+        cmp ah, 00h
+        je print
+        add si, 1 
+        cmp si,05h
+        jg exit
+        loop loop1    
+    print: 
+        
+        mov dx, 00h
+        mov dl,a[si]
+        add si, 1
+        add dl, 30h     
+        mov ah, 2
+        int 21h
+        cmp si,05h
+        jg exit
+        jmp loop1
+    ;--------
+    EXIT: 
+        mov ax,4C00h  
+        int 21h
+        main endp
+    
+
+end main
